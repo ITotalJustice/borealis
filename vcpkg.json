@@ -1,0 +1,10 @@
+{
+    "name": "borealis",
+    "version-string": "1.0",
+    "homepage": "https://github.com/ITotalJustice/borealis",
+    "description": "Hardware accelerated, Nintendo Switch inspired UI library for PC and Nintendo Switch",
+    "license": "Apache-2.0",
+    "dependencies": [
+      "glfw3"
+    ]
+  }

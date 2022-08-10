@@ -1,0 +1,80 @@
+{
+    "version": 3,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 21,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "pc",
+            "displayName": "pc",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "DEMO": true
+            }
+        },
+        {
+            "name": "pc-dev",
+            "displayName": "pc-dev",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "DEMO": true
+            }
+        },
+        {
+            "name": "vcpkg",
+            "displayName": "vcpkg",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "toolchainFile": "$env{VCPKG_INSTALLATION_ROOT}/scripts/buildsystems/vcpkg.cmake",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "DEMO": true
+            }
+        },
+        {
+            "name": "vcpkg-dev",
+            "displayName": "vcpkg-dev",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "toolchainFile": "$env{VCPKG_INSTALLATION_ROOT}/scripts/buildsystems/vcpkg.cmake",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "DEMO": true
+            }
+        },
+        {
+            "name": "switch",
+            "displayName": "switch",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "toolchainFile": "$env{DEVKITPRO}/cmake/Switch.cmake",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "DEMO": true
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "pc",
+            "configurePreset": "pc"
+        },
+        {
+            "name": "pc-dev",
+            "configurePreset": "pc-dev"
+        },
+        {
+            "name": "vcpkg",
+            "configurePreset": "vcpkg"
+        },
+        {
+            "name": "vcpkg-dev",
+            "configurePreset": "vcpkg-dev"
+        },
+        {
+            "name": "switch",
+            "configurePreset": "switch"
+        }
+    ]
+}

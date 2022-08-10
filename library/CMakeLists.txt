@@ -152,7 +152,7 @@ if (NINTENDO_SWITCH)
             BRLS_RESOURCES="romfs:/"
     )
 else()
-    find_package(glfw3 3.3 REQUIRED)
+    find_package(glfw3 CONFIG REQUIRED)
 
     target_link_libraries(borealis PRIVATE glfw)
 

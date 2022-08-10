@@ -1,5 +1,5 @@
 
-name: build switch build and upload demo
+name: build pc
 
 on:
   push:
@@ -10,7 +10,6 @@ on:
 jobs:
   build-nx:
     runs-on: ubuntu-latest
-    container: devkitpro/devkita64:latest
 
     steps:
       - name: Checkout
@@ -22,11 +21,5 @@ jobs:
 
       - name: Build
         run: |
-            cmake --preset switch
-            cmake --build --preset switch -j2
-
-      - name: Upload files
-        uses: actions/upload-artifact@master
-        with:
-          name: borealis-demo
-          path: build/demo/borealis_demo.nro
+            cmake --preset vcpkg
+            cmake --build --preset vcpkg -j2
