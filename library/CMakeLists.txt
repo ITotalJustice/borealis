@@ -68,6 +68,7 @@ add_library(borealis
     lib/extern/yoga/src/yoga/YGEnums.cpp
     lib/extern/yoga/src/yoga/YGLayout.cpp
     lib/extern/yoga/src/yoga/YGNode.cpp
+    lib/extern/yoga/src/yoga/YGNodePrint.cpp
     lib/extern/yoga/src/yoga/YGStyle.cpp
     lib/extern/yoga/src/yoga/YGValue.cpp
     lib/extern/yoga/src/yoga/Yoga.cpp

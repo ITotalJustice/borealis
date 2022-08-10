@@ -53,6 +53,16 @@
                 "CMAKE_BUILD_TYPE": "Release",
                 "DEMO": true
             }
+        },
+        {
+            "name": "switch-dev",
+            "displayName": "switch-dev",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "toolchainFile": "$env{DEVKITPRO}/cmake/Switch.cmake",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "DEMO": true
+            }
         }
     ],
     "buildPresets": [
@@ -75,6 +85,10 @@
         {
             "name": "switch",
             "configurePreset": "switch"
+        },
+        {
+            "name": "switch-dev",
+            "configurePreset": "switch-dev"
         }
     ]
 }
