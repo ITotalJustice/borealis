@@ -100,12 +100,12 @@ if (NINTENDO_SWITCH)
 
             lib/extern/nanovg-deko3d/source/nanovg.c
             lib/extern/nanovg-deko3d/source/dk_renderer.cpp
-            lib/extern/nanovg-deko3d/source/framework/CApplication.cpp
-            lib/extern/nanovg-deko3d/source/framework/CExternalImage.cpp
+            # lib/extern/nanovg-deko3d/source/framework/CApplication.cpp
+            # lib/extern/nanovg-deko3d/source/framework/CExternalImage.cpp
             lib/extern/nanovg-deko3d/source/framework/CIntrusiveTree.cpp
             lib/extern/nanovg-deko3d/source/framework/CMemPool.cpp
             lib/extern/nanovg-deko3d/source/framework/CShader.cpp
-            lib/extern/nanovg-deko3d/source/framework/FileLoader.cpp
+            # lib/extern/nanovg-deko3d/source/framework/FileLoader.cpp
 
             lib/extern/switch-libpulsar/src/archive/archive_file.c
             lib/extern/switch-libpulsar/src/archive/archive.c

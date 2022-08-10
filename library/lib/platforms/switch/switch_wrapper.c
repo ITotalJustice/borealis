@@ -44,6 +44,8 @@ uint16_t ntohs(uint16_t netshort)
 
 void userAppInit()
 {
+    appletLockExit(); // block exit until cleanup
+
     romfsInit();
     socketInitializeDefault();
     plInitialize(PlServiceType_User);
@@ -67,4 +69,5 @@ void userAppExit()
     setsysExit();
     psmExit();
     setExit();
+    appletUnlockExit();
 }
