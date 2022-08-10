@@ -28,7 +28,7 @@ namespace brls
 class GLFWVideoContext : public VideoContext
 {
   public:
-    GLFWVideoContext(std::string windowTitle, uint32_t windowWidth, uint32_t windowHeight);
+    GLFWVideoContext(const std::string& windowTitle, uint32_t windowWidth, uint32_t windowHeight);
     ~GLFWVideoContext();
 
     NVGcontext* getNVGContext() override;

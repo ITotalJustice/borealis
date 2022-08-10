@@ -19,12 +19,12 @@
 namespace brls
 {
 
-ViewNotFoundException::ViewNotFoundException(View* owner, std::string searchedId)
+ViewNotFoundException::ViewNotFoundException(View* owner, const std::string& searchedId)
 {
     this->errorMessage = "Cannot find view with ID \"" + searchedId + "\" in owner view " + owner->describe();
 }
 
-ViewNotFoundException::ViewNotFoundException(Activity* owner, std::string searchedId)
+ViewNotFoundException::ViewNotFoundException(Activity* owner, const std::string& searchedId)
 {
     this->errorMessage = "Cannot find view with ID \"" + searchedId + "\" in given owner activity";
 }

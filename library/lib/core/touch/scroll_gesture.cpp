@@ -42,6 +42,7 @@ GestureState ScrollGestureRecognizer::recognitionLoop(TouchState touch, MouseSta
             .startPosition = Point(),
             .delta         = mouse.scroll,
             .deltaOnly     = true,
+            .acceleration = {}
         };
         this->getPanGestureEvent().fire(status, soundToPlay);
     }

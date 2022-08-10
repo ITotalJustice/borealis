@@ -37,7 +37,7 @@ SelectorCell::SelectorCell()
     });
 }
 
-void SelectorCell::init(std::string title, std::vector<std::string> data, int selected, Event<int>::Callback callback)
+void SelectorCell::init(const std::string& title, std::vector<std::string> data, int selected, Event<int>::Callback callback)
 {
     this->title->setText(title);
     this->data      = data;

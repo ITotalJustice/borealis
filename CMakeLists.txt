@@ -17,6 +17,7 @@ message(STATUS "SYSTEM: ${CMAKE_SYSTEM_NAME}")
 message(STATUS "COMPILER: ${CMAKE_CXX_COMPILER_ID}")
 
 option(DEMO "build demo" ON)
+option(SANITISE "build with sanitisers" OFF)
 
 if (DEMO)
     add_subdirectory(demo)

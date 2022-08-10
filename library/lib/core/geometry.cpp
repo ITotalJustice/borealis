@@ -151,12 +151,12 @@ bool Rect::operator==(const Rect& other) const
     return origin == other.origin && size == other.size;
 }
 
-bool Rect::pointInside(Point point)
+bool Rect::pointInside(Point point) const
 {
     return getMinX() <= point.x && getMaxX() >= point.x && getMinY() <= point.y && getMaxY() >= point.y;
 }
 
-std::string Rect::describe()
+std::string Rect::describe() const
 {
     return "X: " + std::to_string((int)getMinX()) + ", Y: " + std::to_string((int)getMinY()) + ", W: " + std::to_string((int)getWidth()) + ", H: " + std::to_string((int)getHeight());
 }

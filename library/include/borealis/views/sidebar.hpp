@@ -57,7 +57,7 @@ class SidebarItem : public Box
 
     void setGroup(SidebarItemGroup* group);
 
-    void setLabel(std::string label);
+    void setLabel(const std::string& label);
 
     void setActive(bool active);
 
@@ -83,7 +83,7 @@ class Sidebar : public ScrollingFrame
      * Adds an item to this sidebar. The given callback will be called
      * when the item becomes active.
      */
-    void addItem(std::string label, GenericEvent::Callback focusCallback);
+    void addItem(const std::string& label, GenericEvent::Callback focusCallback);
 
     SidebarItem* getItem(int position);
 

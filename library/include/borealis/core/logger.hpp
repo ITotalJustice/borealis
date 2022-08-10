@@ -39,7 +39,7 @@ class Logger
     static void setLogLevel(LogLevel logLevel);
 
     template <typename... Args>
-    inline static void log(LogLevel logLevel, std::string prefix, std::string color, std::string format, Args&&... args)
+    inline static void log(LogLevel logLevel, const std::string& prefix, const std::string& color, const std::string& format, Args&&... args)
     {
         if (Logger::logLevel < logLevel)
             return;
@@ -65,25 +65,25 @@ class Logger
     }
 
     template <typename... Args>
-    inline static void error(std::string format, Args&&... args)
+    inline static void error(const std::string& format, Args&&... args)
     {
         Logger::log(LogLevel::Error, "ERROR", "[0;31m", format, args...);
     }
 
     template <typename... Args>
-    inline static void warning(std::string format, Args&&... args)
+    inline static void warning(const std::string& format, Args&&... args)
     {
         Logger::log(LogLevel::Warning, "WARNING", "[0;33m", format, args...);
     }
 
     template <typename... Args>
-    inline static void info(std::string format, Args&&... args)
+    inline static void info(const std::string& format, Args&&... args)
     {
         Logger::log(LogLevel::Info, "INFO", "[0;34m", format, args...);
     }
 
     template <typename... Args>
-    inline static void debug(std::string format, Args&&... args)
+    inline static void debug(const std::string& format, Args&&... args)
     {
         Logger::log(LogLevel::Debug, "DEBUG", "[0;32m", format, args...);
     }

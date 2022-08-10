@@ -100,8 +100,8 @@ class RecyclerHeader
   public:
     RecyclerHeader();
 
-    void setTitle(std::string text);
-    void setSubtitle(std::string text);
+    void setTitle(const std::string& text);
+    void setSubtitle(const std::string& text);
 
     static RecyclerHeader* create();
 
@@ -113,6 +113,7 @@ class RecyclerFrame;
 class RecyclerDataSource
 {
   public:
+    virtual ~RecyclerDataSource() = default;
     /*
      * Asks the data source to return the number of sections in the recycler frame.
      */
@@ -201,12 +202,12 @@ class RecyclerFrame : public ScrollingFrame
     /*
      * Registers a class for use in creating new recycler cells.
      */
-    void registerCell(std::string identifier, std::function<RecyclerCell*(void)> allocation);
+    void registerCell(const std::string& identifier, std::function<RecyclerCell*(void)> allocation);
 
     /*
      * Returns a reusable recycler-frame cell object for the specified reuse identifier
      */
-    RecyclerCell* dequeueReusableCell(std::string identifier);
+    RecyclerCell* dequeueReusableCell(const std::string& identifier);
 
     /*
      * Selects a row in the recycler frame identified by index path.

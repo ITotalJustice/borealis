@@ -82,7 +82,7 @@
                                                 \
         }                                       \
     }                                           \
-    if (release) return;    
+    if (release) return;
 
 #define ASYNC_TOKEN this, token, tokenCounter
 
@@ -158,12 +158,12 @@ struct AppletFrameItem {
     std::string title;
     std::string iconPath;
 
-    void setIconFromRes(std::string name)
+    void setIconFromRes(const std::string& name)
     {
         iconPath = std::string(BRLS_RESOURCES) + name;
     }
 
-    void setIconFromFile(std::string path)
+    void setIconFromFile(const std::string& path)
     {
         iconPath = path;
     }
@@ -280,7 +280,7 @@ class View
     std::set<std::string> knownAttributes;
 
     void registerCommonAttributes();
-    void printXMLAttributeErrorMessage(tinyxml2::XMLElement* element, std::string name, std::string value);
+    void printXMLAttributeErrorMessage(tinyxml2::XMLElement* element, const std::string& name, const std::string& value);
 
     unsigned maximumAllowedXMLElements = UINT_MAX;
 
@@ -396,7 +396,7 @@ class View
      * Research is done recursively by traversing the tree starting from this view.
      * This view's parents are not traversed.
      */
-    virtual View* getView(std::string id);
+    virtual View* getView(const std::string& id);
 
     // -----------------------------------------------------------
     // Flex layout properties
@@ -726,7 +726,7 @@ class View
     /**
      * Sets the id of the view.
      */
-    void setId(std::string id);
+    void setId(const std::string& id);
 
     /**
      * Overrides align items of the parent box.
@@ -912,7 +912,7 @@ class View
      * Research is done by traversing the tree upwards, starting from this view.
      * The current algorithm is very inefficient.
      */
-    virtual View* getNearestView(std::string id);
+    virtual View* getNearestView(const std::string& id);
 
     /**
      * Creates a view from the given XML file content.
@@ -923,7 +923,7 @@ class View
      * Use registerXMLView() to add your own views to the table so that
      * you can use them in your own XML files.
      */
-    static View* createFromXMLString(std::string xml);
+    static View* createFromXMLString(const std::string& xml);
 
     /**
      * Creates a view from the given XML element (node and attributes).
@@ -945,7 +945,7 @@ class View
      * Use registerXMLView() to add your own views to the table so that
      * you can use them in your own XML files.
      */
-    static View* createFromXMLFile(std::string path);
+    static View* createFromXMLFile(const std::string& path);
 
     /**
      * Creates a view from the given XML resource file name.
@@ -956,7 +956,7 @@ class View
      * Use registerXMLView() to add your own views to the table so that
      * you can use them in your own XML files.
      */
-    static View* createFromXMLResource(std::string name);
+    static View* createFromXMLResource(const std::string& name);
 
     /**
      * Handles a child XML element.
@@ -983,7 +983,7 @@ class View
      * You can add your own attributes to by calling registerXMLAttribute()
      * in the view constructor.
      */
-    virtual bool applyXMLAttribute(std::string name, std::string value);
+    virtual bool applyXMLAttribute(const std::string& name, const std::string& value);
 
     /**
      * Register a new XML attribute with the given name and handler
@@ -992,7 +992,7 @@ class View
      *
      * The method will be called if the attribute has the value "auto".
      */
-    void registerAutoXMLAttribute(std::string name, AutoAttributeHandler handler);
+    void registerAutoXMLAttribute(const std::string& name, AutoAttributeHandler handler);
 
     /**
      * Register a new XML attribute with the given name and handler
@@ -1002,7 +1002,7 @@ class View
      * The method will be called if the attribute has a percentage value (an integer with "%" suffix).
      * The given float value is guaranteed to be between 0.0f and 1.0f.
      */
-    void registerPercentageXMLAttribute(std::string name, FloatAttributeHandler handler);
+    void registerPercentageXMLAttribute(const std::string& name, FloatAttributeHandler handler);
 
     /**
      * Register a new XML attribute with the given name and handler
@@ -1011,7 +1011,7 @@ class View
      *
      * The method will be called if the attribute has an integer, float, @style or "px" value.
      */
-    void registerFloatXMLAttribute(std::string name, FloatAttributeHandler handler);
+    void registerFloatXMLAttribute(const std::string& name, FloatAttributeHandler handler);
 
     /**
      * Register a new XML attribute with the given name and handler
@@ -1022,7 +1022,7 @@ class View
      *
      * If you use string as a type, you can only have one handler for the attribute.
      */
-    void registerStringXMLAttribute(std::string name, StringAttributeHandler handler);
+    void registerStringXMLAttribute(const std::string& name, StringAttributeHandler handler);
 
     /**
      * Register a new XML attribute with the given name and handler
@@ -1032,7 +1032,7 @@ class View
      * The method will be called if the attribute has a color value ("#XXXXXX" or "#XXXXXXXX")
      * or a @theme value.
      */
-    void registerColorXMLAttribute(std::string name, ColorAttributeHandler handler);
+    void registerColorXMLAttribute(const std::string& name, ColorAttributeHandler handler);
 
     /**
      * Register a new XML attribute with the given name and handler
@@ -1041,7 +1041,7 @@ class View
      *
      * The method will be called if the attribute has a boolean value ("true" or "false").
      */
-    void registerBoolXMLAttribute(std::string name, BoolAttributeHandler handler);
+    void registerBoolXMLAttribute(const std::string& name, BoolAttributeHandler handler);
 
     /**
      * Register a new XML attribute with the given name and handler
@@ -1050,7 +1050,7 @@ class View
      *
      * The method will be called if the attribute has a file path value ("@res/" or raw path).
      */
-    void registerFilePathXMLAttribute(std::string name, FilePathAttributeHandler handler);
+    void registerFilePathXMLAttribute(const std::string& name, FilePathAttributeHandler handler);
 
     /**
      * Binds the given XML document to the view for ownership. The
@@ -1061,7 +1061,7 @@ class View
     /**
      * Returns if the given XML attribute name is valid for that view.
      */
-    bool isXMLAttributeValid(std::string attributeName);
+    bool isXMLAttributeValid(const std::string& attributeName);
 
     /**
      * Sets the maximum number of allowed children XML elements
@@ -1088,7 +1088,7 @@ class View
     }
 
     bool isFocusable();
-    
+
     /**
      * Removes view from it's parent
      */
@@ -1159,7 +1159,7 @@ class View
      * Returns the identifier for the action, so it can be unregistered later on. Returns ACTION_NONE if the
      * action was not registered.
      */
-    ActionIdentifier registerAction(std::string hintText, enum ControllerButton button, ActionListener actionListener, bool hidden = false, bool allowRepeating = false, enum Sound sound = SOUND_NONE);
+    ActionIdentifier registerAction(const std::string& hintText, enum ControllerButton button, ActionListener actionListener, bool hidden = false, bool allowRepeating = false, enum Sound sound = SOUND_NONE);
 
     /**
      * Unregisters an action with the given identifier.
@@ -1171,7 +1171,7 @@ class View
      */
     void registerClickAction(ActionListener actionListener);
 
-    void updateActionHint(enum ControllerButton button, std::string hintText);
+    void updateActionHint(enum ControllerButton button, const std::string& hintText);
     void setActionAvailable(enum ControllerButton button, bool available);
     void setActionsAvailable(bool available);
 
@@ -1234,7 +1234,7 @@ class View
 
     /**
      * Called each frame when touch is registered.
-     * 
+     *
      * @returns sound to play invoked by touch recognizers.
      */
     Sound gestureRecognizerRequest(TouchState touch, MouseState mouse, View* firstResponder);
@@ -1390,7 +1390,7 @@ class View
      * Resolution of the ID to View is made when the navigation event occurs, not when the
      * route is registered.
      */
-    void setCustomNavigationRoute(FocusDirection direction, std::string targetId);
+    void setCustomNavigationRoute(FocusDirection direction, const std::string& targetId);
 
     bool hasCustomNavigationRouteByPtr(FocusDirection direction);
     bool hasCustomNavigationRouteById(FocusDirection direction);
@@ -1489,14 +1489,14 @@ class View
      * Applies i18n if the value is an "@i18n/" string, returns the
      * string as it is otherwise.
      */
-    static std::string getStringXMLAttributeValue(std::string value);
+    static std::string getStringXMLAttributeValue(const std::string& value);
 
     /**
      * Resolves the value of the given XML attribute file path.
      * Returns the full path of the resource if it starts with "@res/", returns the
      * path as it is otherwise.
      */
-    static std::string getFilePathXMLAttributeValue(std::string value);
+    static std::string getFilePathXMLAttributeValue(const std::string& value);
 
     AppletFrameItem *getAppletFrameItem()
     {

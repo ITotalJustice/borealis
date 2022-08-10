@@ -21,10 +21,10 @@
 class Pokemon
 {
   public:
-    std::string id;
-    std::string name;
+    const std::string id;
+    const std::string name;
 
-    Pokemon(std::string id, std::string name)
+    Pokemon(const std::string& id, const std::string& name)
         : id(id)
         , name(name)
     {

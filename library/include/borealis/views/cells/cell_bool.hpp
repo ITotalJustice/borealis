@@ -30,7 +30,7 @@ class BooleanCell : public DetailCell
   public:
     BooleanCell();
 
-    void init(std::string title, bool isOn, std::function<void(bool)> callback);
+    void init(const std::string& title, bool isOn, std::function<void(bool)> callback);
 
     void setOn(bool on, bool animated = true);
     bool isOn()

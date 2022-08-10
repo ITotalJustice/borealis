@@ -37,7 +37,7 @@ InputCell::InputCell()
     });
 }
 
-void InputCell::init(std::string title, std::string value, Event<std::string>::Callback callback, std::string placeholder, std::string hint, int maxInputLength, int kbdDisableBitmask)
+void InputCell::init(const std::string& title, const std::string& value, Event<std::string>::Callback callback, const std::string& placeholder, const std::string& hint, int maxInputLength, int kbdDisableBitmask)
 {
     this->hint  = hint;
     this->value = value;
@@ -49,14 +49,14 @@ void InputCell::init(std::string title, std::string value, Event<std::string>::C
     updateUI();
 }
 
-void InputCell::setValue(std::string value)
+void InputCell::setValue(const std::string& value)
 {
     this->event.fire(value);
     this->value = value;
     updateUI();
 }
 
-void InputCell::setPlaceholder(std::string placeholder)
+void InputCell::setPlaceholder(const std::string& placeholder)
 {
     this->placeholder = placeholder;
     updateUI();
@@ -96,7 +96,7 @@ InputNumericCell::InputNumericCell()
     });
 }
 
-void InputNumericCell::init(std::string title, long value, Event<long>::Callback callback, std::string hint, int maxInputLength, int kbdDisableBitmask)
+void InputNumericCell::init(const std::string& title, long value, Event<long>::Callback callback, const std::string& hint, int maxInputLength, int kbdDisableBitmask)
 {
     this->hint  = hint;
     this->value = value;

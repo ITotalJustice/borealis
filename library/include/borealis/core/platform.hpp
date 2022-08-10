@@ -37,7 +37,7 @@ class Platform
      * Called on startup, right after instanciation, to create and open a window
      * with the given title and size.
      */
-    virtual void createWindow(std::string title, uint32_t width, uint32_t height) = 0;
+    virtual void createWindow(const std::string& title, uint32_t width, uint32_t height) = 0;
 
     /**
      * Returns the human-readable name of the platform.

@@ -392,7 +392,7 @@ View* Box::getNextFocus(FocusDirection direction, View* currentView)
     size_t currentFocusIndex = *((size_t*)parentUserData) + offset;
     View* currentFocus       = nullptr;
 
-    while (!currentFocus && currentFocusIndex >= 0 && currentFocusIndex < this->children.size())
+    while (!currentFocus && currentFocusIndex < this->children.size())
     {
         currentFocus = this->children[currentFocusIndex]->getDefaultFocus();
         currentFocusIndex += offset;
@@ -435,7 +435,7 @@ std::vector<View*>& Box::getChildren()
     return this->children;
 }
 
-void Box::inflateFromXMLString(std::string xml)
+void Box::inflateFromXMLString(const std::string& xml)
 {
     // Load XML
     tinyxml2::XMLDocument* document = new tinyxml2::XMLDocument();
@@ -454,12 +454,12 @@ void Box::inflateFromXMLString(std::string xml)
     return Box::inflateFromXMLElement(element);
 }
 
-void Box::inflateFromXMLRes(std::string name)
+void Box::inflateFromXMLRes(const std::string& name)
 {
     return Box::inflateFromXMLFile(std::string(BRLS_RESOURCES) + name);
 }
 
-void Box::inflateFromXMLFile(std::string path)
+void Box::inflateFromXMLFile(const std::string& path)
 {
     // Load XML
     tinyxml2::XMLDocument* document = new tinyxml2::XMLDocument();
@@ -587,7 +587,7 @@ void Box::setAlignItems(AlignItems alignment)
     this->invalidate();
 }
 
-View* Box::getView(std::string id)
+View* Box::getView(const std::string& id)
 {
     if (id == this->id)
         return this;
@@ -603,7 +603,7 @@ View* Box::getView(std::string id)
     return nullptr;
 }
 
-bool Box::applyXMLAttribute(std::string name, std::string value)
+bool Box::applyXMLAttribute(const std::string& name, const std::string& value)
 {
     if (this->forwardedAttributes.count(name) > 0)
     {
@@ -614,12 +614,12 @@ bool Box::applyXMLAttribute(std::string name, std::string value)
     return View::applyXMLAttribute(name, value);
 }
 
-void Box::forwardXMLAttribute(std::string attributeName, View* target)
+void Box::forwardXMLAttribute(const std::string& attributeName, View* target)
 {
     this->forwardXMLAttribute(attributeName, target, attributeName);
 }
 
-void Box::forwardXMLAttribute(std::string attributeName, View* target, std::string targetAttributeName)
+void Box::forwardXMLAttribute(const std::string& attributeName, View* target, const std::string& targetAttributeName)
 {
     if (!target->isXMLAttributeValid(targetAttributeName))
         fatal("Error when forwarding \"" + attributeName + "\" of \"" + this->describe() + "\": attribute \"" + targetAttributeName + "\" is not a XML valid attribute for view \"" + target->describe() + "\"");

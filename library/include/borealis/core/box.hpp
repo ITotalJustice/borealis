@@ -76,7 +76,7 @@ class Box : public View
     void onFocusLost() override;
     void onParentFocusGained(View* focusedView) override;
     void onParentFocusLost(View* focusedView) override;
-    bool applyXMLAttribute(std::string name, std::string value) override;
+    bool applyXMLAttribute(const std::string& name, const std::string& value) override;
 
     static View* create();
 
@@ -182,7 +182,7 @@ class Box : public View
      *
      * The forwarded attribute value will override the value of the regular attribute if it already exists in the target view.
      */
-    void forwardXMLAttribute(std::string attributeName, View* target);
+    void forwardXMLAttribute(const std::string& attributeName, View* target);
 
     /**
      * Registers an XML attribute to be forwarded to the given view, while changing the target attribute name.
@@ -191,7 +191,7 @@ class Box : public View
      *
      * The forwarded attribute value will override the value of the regular attribute if it already exists in the target view.
      */
-    void forwardXMLAttribute(std::string attributeName, View* target, std::string targetAttributeName);
+    void forwardXMLAttribute(const std::string& attributeName, View* target, const std::string& targetAttributeName);
 
     /**
      * Fired when focus is gained on one of this view's children, or one of the children
@@ -211,7 +211,7 @@ class Box : public View
      */
     virtual void onChildFocusLost(View* directChild, View* focusedView);
 
-    View* getView(std::string id) override;
+    View* getView(const std::string& id) override;
 
     void setLastFocusedView(View* view)
     {
@@ -238,7 +238,7 @@ class Box : public View
      * Each child node in the root brls::Box will be treated as a view and added
      * as a child of the Box.
      */
-    void inflateFromXMLString(std::string xml);
+    void inflateFromXMLString(const std::string& xml);
 
     /**
      * Inflates the Box with the given XML element.
@@ -260,7 +260,7 @@ class Box : public View
      * Each child node in the root brls::Box will be treated as a view and added
      * as a child of the Box.
      */
-    void inflateFromXMLRes(std::string res);
+    void inflateFromXMLRes(const std::string& res);
 
     /**
      * Inflates the Box with the given XML file path.
@@ -271,7 +271,7 @@ class Box : public View
      * Each child node in the root brls::Box will be treated as a view and added
      * as a child of the Box.
      */
-    void inflateFromXMLFile(std::string path);
+    void inflateFromXMLFile(const std::string& path);
 
     /**
      * Handles a child XML element.

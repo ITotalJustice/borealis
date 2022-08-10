@@ -31,7 +31,7 @@ class SwitchPlatform : public Platform
     SwitchPlatform();
     ~SwitchPlatform();
 
-    void createWindow(std::string windowTitle, uint32_t windowWidth, uint32_t windowHeight) override;
+    void createWindow(const std::string& windowTitle, uint32_t windowWidth, uint32_t windowHeight) override;
 
     std::string getName() override;
 

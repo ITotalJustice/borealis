@@ -85,12 +85,12 @@ RecyclerHeader::RecyclerHeader()
     header->setGrow(1);
 }
 
-void RecyclerHeader::setTitle(std::string title)
+void RecyclerHeader::setTitle(const std::string& title)
 {
     this->header->setTitle(title);
 }
 
-void RecyclerHeader::setSubtitle(std::string subtitle)
+void RecyclerHeader::setSubtitle(const std::string& subtitle)
 {
     this->header->setSubtitle(subtitle);
 }
@@ -152,7 +152,7 @@ View* RecyclerFrame::getNextCellFocus(FocusDirection direction, View* currentVie
     size_t currentFocusIndex = *((size_t*)parentUserData) + offset;
     View* currentFocus       = nullptr;
 
-    while (!currentFocus && currentFocusIndex >= 0 && currentFocusIndex < this->cacheIndexPathData.size())
+    while (!currentFocus && currentFocusIndex < this->cacheIndexPathData.size())
     {
         for (auto it : this->contentBox->getChildren())
         {
@@ -205,8 +205,9 @@ RecyclerFrame::RecyclerFrame()
 
 RecyclerFrame::~RecyclerFrame()
 {
-    //    if (this->dataSource)
-    //        delete dataSource;
+    // why was this commented out?????????
+    if (this->dataSource)
+        delete dataSource;
 
     for (auto it : queueMap)
     {
@@ -270,13 +271,13 @@ void RecyclerFrame::reloadData()
     }
 }
 
-void RecyclerFrame::registerCell(std::string identifier, std::function<RecyclerCell*()> allocation)
+void RecyclerFrame::registerCell(const std::string& identifier, std::function<RecyclerCell*()> allocation)
 {
     queueMap.insert(std::make_pair(identifier, new std::vector<RecyclerCell*>()));
     allocationMap.insert(std::make_pair(identifier, allocation));
 }
 
-RecyclerCell* RecyclerFrame::dequeueReusableCell(std::string identifier)
+RecyclerCell* RecyclerFrame::dequeueReusableCell(const std::string& identifier)
 {
     RecyclerCell* cell = nullptr;
     auto it            = queueMap.find(identifier);
@@ -324,6 +325,7 @@ void RecyclerFrame::selectRowAt(IndexPath indexPath, bool animated)
 
     for (View* view : contentBox->getChildren())
     {
+        // ???
         if (*((size_t*)view->getParentUserData()) == count - 1)
         {
             contentBox->setLastFocusedView(view);

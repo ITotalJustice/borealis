@@ -106,7 +106,7 @@ static INLINE void retro_sleep(unsigned msec)
 #elif defined(WIIU)
    OSSleepTicks(ms_to_ticks(msec));
 #else
-   struct timespec tv = {0};
+   struct timespec tv = {};
    tv.tv_sec = msec / 1000;
    tv.tv_nsec = (msec % 1000) * 1000000;
    nanosleep(&tv, NULL);

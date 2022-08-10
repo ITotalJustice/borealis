@@ -48,7 +48,7 @@ TabFrame::TabFrame()
     this->inflateFromXMLString(tabFrameContentXML);
 }
 
-void TabFrame::addTab(std::string label, TabViewCreator creator)
+void TabFrame::addTab(const std::string& label, TabViewCreator creator)
 {
     this->sidebar->addItem(label, [this, creator](brls::View* view) {
         // Only trigger when the sidebar item gains focus
@@ -141,6 +141,7 @@ void TabFrame::handleXMLElement(tinyxml2::XMLElement* element)
 
 View* TabFrame::create()
 {
+    // assert(0);
     return new TabFrame();
 }
 

@@ -173,6 +173,7 @@ PanGestureStatus PanGestureRecognizer::getCurrentStatus()
         .position      = this->position,
         .startPosition = this->startPosition,
         .delta         = this->delta,
+        .acceleration = {}
     };
 }
 

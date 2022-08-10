@@ -31,8 +31,8 @@ class Header : public Box
   public:
     Header();
 
-    void setTitle(std::string text);
-    void setSubtitle(std::string text);
+    void setTitle(const std::string& text);
+    void setSubtitle(const std::string& text);
 
     static View* create();
 

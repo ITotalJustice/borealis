@@ -27,8 +27,8 @@ namespace brls
 class ViewNotFoundException : public std::exception
 {
   public:
-    ViewNotFoundException(View* owner, std::string searchedId);
-    ViewNotFoundException(Activity* owner, std::string searchedId);
+    ViewNotFoundException(View* owner, const std::string& searchedId);
+    ViewNotFoundException(Activity* owner, const std::string& searchedId);
 
     const char* what() const noexcept;
 
@@ -46,13 +46,13 @@ template <typename T>
 class BoundView
 {
   public:
-    BoundView(std::string id, View* owner)
+    BoundView(const std::string& id, View* owner)
         : id(id)
         , ownerView(owner)
     {
     }
 
-    BoundView(std::string id, Activity* owner)
+    BoundView(const std::string& id, Activity* owner)
         : id(id)
         , ownerActivity(owner)
     {

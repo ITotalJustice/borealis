@@ -128,7 +128,7 @@ const std::string dialogXML = R"xml(
                         visibility="gone"/>
 
                 </brls:Box>
-            
+
             </brls:Box>
 
         </brls:AppletFrame>
@@ -150,7 +150,7 @@ Dialog::Dialog(Box* contentView)
         false, false, SOUND_BACK);
 }
 
-Dialog::Dialog(std::string text)
+Dialog::Dialog(const std::string& text)
 {
     Style style = Application::getStyle();
 
@@ -169,7 +169,7 @@ Dialog::Dialog(std::string text)
     new (this) Dialog(box);
 }
 
-void Dialog::addButton(std::string label, VoidEvent::Callback cb)
+void Dialog::addButton(const std::string& label, VoidEvent::Callback cb)
 {
     if (this->buttons.size() >= 3)
         return;

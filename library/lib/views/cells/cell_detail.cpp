@@ -53,7 +53,7 @@ DetailCell::DetailCell()
     this->inflateFromXMLString(detailCellXML);
 }
 
-void DetailCell::setText(std::string title)
+void DetailCell::setText(const std::string& title)
 {
     this->title->setText(title);
 }
@@ -63,7 +63,7 @@ void DetailCell::setTextColor(NVGcolor color)
     this->title->setTextColor(color);
 }
 
-void DetailCell::setDetailText(std::string title)
+void DetailCell::setDetailText(const std::string& title)
 {
     this->detail->setText(title);
 }

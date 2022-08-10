@@ -62,7 +62,7 @@ class Dialog : public Box
     BRLS_BIND(Rectangle, button3separator, "brls/dialog/button3/separator");
 
   public:
-    Dialog(std::string text);
+    Dialog(const std::string& text);
     Dialog(Box* contentView);
     ~Dialog();
 
@@ -75,7 +75,7 @@ class Dialog : public Box
      * Adding a button after the dialog has been opened is
      * NOT SUPPORTED
      */
-    void addButton(std::string label, VoidEvent::Callback cb);
+    void addButton(const std::string& label, VoidEvent::Callback cb);
 
     /**
      * A cancelable dialog is closed when

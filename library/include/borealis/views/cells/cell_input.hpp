@@ -31,21 +31,21 @@ class InputCell : public DetailCell
   public:
     InputCell();
 
-    void init(std::string title, std::string value, Event<std::string>::Callback callback = [](std::string text){}, std::string placeholder = "", std::string hint = "", int maxInputLength = 32, int kbdDisableBitmask = 0);
+    void init(const std::string& title, const std::string& value, Event<std::string>::Callback callback = [](const std::string& text){}, const std::string& placeholder = "", const std::string& hint = "", int maxInputLength = 32, int kbdDisableBitmask = 0);
 
-    void setValue(std::string value);
+    void setValue(const std::string& value);
     std::string getValue()
     {
         return value;
     }
 
-    void setPlaceholder(std::string placeholder);
+    void setPlaceholder(const std::string& placeholder);
     std::string getPlaceholder()
     {
         return placeholder;
     }
 
-    void setHint(std::string hint)
+    void setHint(const std::string& hint)
     {
         this->hint = hint;
     }
@@ -78,7 +78,7 @@ class InputNumericCell : public DetailCell
   public:
     InputNumericCell();
 
-    void init(std::string title, long value, Event<long>::Callback callback, std::string hint = "", int maxInputLength = 18, int kbdDisableBitmask = 0);
+    void init(const std::string& title, long value, Event<long>::Callback callback, const std::string& hint = "", int maxInputLength = 18, int kbdDisableBitmask = 0);
 
     void setValue(long value);
     long getValue()
@@ -86,7 +86,7 @@ class InputNumericCell : public DetailCell
         return value;
     }
 
-    void setHint(std::string hint)
+    void setHint(const std::string& hint)
     {
         this->hint = hint;
     }

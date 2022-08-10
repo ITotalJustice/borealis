@@ -47,7 +47,7 @@ const std::string LOCALE_DEFAULT = LOCALE_EN_US;
 
 namespace internal
 {
-    std::string getRawStr(std::string stringName);
+    std::string getRawStr(const std::string& stringName);
 } // namespace internal
 
 /**
@@ -55,7 +55,7 @@ namespace internal
  * after injecting format parameters (if any)
  */
 template <typename... Args>
-std::string getStr(std::string stringName, Args&&... args)
+std::string getStr(const std::string& stringName, Args&&... args)
 {
     std::string rawStr = internal::getRawStr(stringName);
 

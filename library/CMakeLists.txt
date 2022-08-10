@@ -186,3 +186,47 @@ else()
             BRLS_RESOURCES="${CMAKE_SOURCE_DIR}/resources/"
     )
 endif()
+
+if (SANITISE)
+    target_compile_options(borealis PUBLIC
+        -fsanitize=address
+        -fsanitize=leak
+
+        -fsanitize=undefined
+        -fsanitize=shift
+        -fsanitize=shift-exponent
+        -fsanitize=shift-base
+        -fsanitize=integer-divide-by-zero
+        -fsanitize=signed-integer-overflow
+        -fsanitize=alignment
+        -fsanitize=bool
+        -fsanitize=enum
+        -fsanitize=vptr
+        -fsanitize=pointer-overflow
+
+        -fstack-protector-all
+
+        -Wall
+        -Wextra
+        -Wno-unused
+    )
+
+    target_link_libraries(borealis PUBLIC
+        -fsanitize=address
+        -fsanitize=leak
+
+        -fsanitize=undefined
+        -fsanitize=shift
+        -fsanitize=shift-exponent
+        -fsanitize=shift-base
+        -fsanitize=integer-divide-by-zero
+        -fsanitize=signed-integer-overflow
+        -fsanitize=alignment
+        -fsanitize=bool
+        -fsanitize=enum
+        -fsanitize=vptr
+        -fsanitize=pointer-overflow
+
+        -fstack-protector-all
+    )
+endif()

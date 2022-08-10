@@ -60,7 +60,7 @@ class Application
      * Creates the application window with the given title.
      * Must be called after calling init().
      */
-    static void createWindow(std::string title);
+    static void createWindow(const std::string& title);
 
     /**
      * Application main loop iteration.
@@ -121,28 +121,28 @@ class Application
      * Loads a font from a given file and stores it in the font stash.
      * Returns true if the operation succeeded.
      */
-    static bool loadFontFromFile(std::string fontName, std::string filePath);
+    static bool loadFontFromFile(const std::string& fontName, const std::string& filePath);
 
     /**
      * Loads a font from a given memory buffer and stores it in the font stash.
      * Returns true if the operation succeeded.
      */
-    static bool loadFontFromMemory(std::string fontName, void* data, size_t size, bool freeData);
+    static bool loadFontFromMemory(const std::string& fontName, void* data, size_t size, bool freeData);
 
     /**
      * Returns the nanovg handle to the given font name, or FONT_INVALID if
      * no such font is currently loaded.
      */
-    static int getFont(std::string fontName);
+    static int getFont(const std::string& fontName);
 
-    static void notify(std::string text);
+    static void notify(const std::string& text);
 
     static void onControllerButtonPressed(enum ControllerButton button, bool repeating);
 
     /**
       * "Crashes" the app (displays a fullscreen CrashFrame)
       */
-    static void crash(std::string text);
+    static void crash(const std::string& text);
 
     static void quit();
 
@@ -159,7 +159,7 @@ class Application
 
     static bool isInputBlocks();
 
-    static void setCommonFooter(std::string footer);
+    static void setCommonFooter(const std::string& footer);
     static std::string* getCommonFooter();
 
     static void setDisplayFramerate(bool enabled);
@@ -197,10 +197,10 @@ class Application
      *
      * You should not add any children in the function, it is already taken care of.
      */
-    static void registerXMLView(std::string name, XMLViewCreator creator);
+    static void registerXMLView(const std::string& name, XMLViewCreator creator);
 
-    static bool XMLViewsRegisterContains(std::string name);
-    static XMLViewCreator getXMLViewCreator(std::string name);
+    static bool XMLViewsRegisterContains(const std::string& name);
+    static XMLViewCreator getXMLViewCreator(const std::string& name);
 
     /**
      * Returns the current system locale.
@@ -294,7 +294,9 @@ class Application
 
     static void frame();
     static void clear();
+  public:
     static void exit();
+  private:
 
     /**
      * Handles actions for the currently focused view and

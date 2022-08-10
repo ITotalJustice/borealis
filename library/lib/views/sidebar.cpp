@@ -146,7 +146,7 @@ GenericEvent* SidebarItem::getActiveEvent()
     return &this->activeEvent;
 }
 
-void SidebarItem::setLabel(std::string label)
+void SidebarItem::setLabel(const std::string& label)
 {
     this->label->setText(label);
 }
@@ -171,7 +171,7 @@ Sidebar::Sidebar()
     this->setScrollingIndicatorVisible(false);
 }
 
-void Sidebar::addItem(std::string label, GenericEvent::Callback focusCallback)
+void Sidebar::addItem(const std::string& label, GenericEvent::Callback focusCallback)
 {
     SidebarItem* item = new SidebarItem();
     item->setGroup(&this->group);

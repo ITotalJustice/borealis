@@ -31,7 +31,7 @@ namespace brls
 
 #ifdef __SWITCH__
 
-static SwkbdConfig createSwkbdBaseConfig(std::string headerText, std::string subText, int maxStringLength, std::string initialText)
+static SwkbdConfig createSwkbdBaseConfig(const std::string& headerText, const std::string& subText, int maxStringLength, const std::string& initialText)
 {
     SwkbdConfig config;
 
@@ -89,7 +89,7 @@ int getSwkbdKeyDisableBitmask(int borealis_key)
     return ret;
 }
 #else
-static std::string terminalInput(std::string text)
+static std::string terminalInput(const std::string& text)
 {
     printf("\033[0;94m[INPUT] \033[0;36m%s\033[0m: ", text.c_str());
     std::string line;
@@ -98,7 +98,7 @@ static std::string terminalInput(std::string text)
 }
 #endif
 
-bool Swkbd::openForText(std::function<void(std::string)> f, std::string headerText, std::string subText, int maxStringLength, std::string initialText, int kbdDisableBitmask)
+bool Swkbd::openForText(std::function<void(std::string)> f, const std::string& headerText, const std::string& subText, int maxStringLength, const std::string& initialText, int kbdDisableBitmask)
 {
 #ifdef __SWITCH__
     SwkbdConfig config = createSwkbdBaseConfig(headerText, subText, maxStringLength, initialText);
@@ -126,7 +126,7 @@ bool Swkbd::openForText(std::function<void(std::string)> f, std::string headerTe
 #endif
 }
 
-bool Swkbd::openForNumber(std::function<void(long)> f, std::string headerText, std::string subText, int maxStringLength, std::string initialText, std::string leftButton, std::string rightButton, int kbdDisableBitmask)
+bool Swkbd::openForNumber(std::function<void(long)> f, const std::string& headerText, const std::string& subText, int maxStringLength, const std::string& initialText, const std::string& leftButton, const std::string& rightButton, int kbdDisableBitmask)
 {
 #ifdef __SWITCH__
     SwkbdConfig config = createSwkbdBaseConfig(headerText, subText, maxStringLength, initialText);

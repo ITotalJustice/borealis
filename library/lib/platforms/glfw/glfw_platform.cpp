@@ -52,7 +52,7 @@ GLFWPlatform::GLFWPlatform()
     this->audioPlayer = new NullAudioPlayer();
 }
 
-void GLFWPlatform::createWindow(std::string windowTitle, uint32_t windowWidth, uint32_t windowHeight)
+void GLFWPlatform::createWindow(const std::string& windowTitle, uint32_t windowWidth, uint32_t windowHeight)
 {
     this->videoContext = new GLFWVideoContext(windowTitle, windowWidth, windowHeight);
     this->inputManager = new GLFWInputManager(this->videoContext->getGLFWWindow());

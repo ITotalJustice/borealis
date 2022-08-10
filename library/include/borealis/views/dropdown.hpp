@@ -64,7 +64,7 @@ class Dropdown : public Box, private RecyclerDataSource
     float getShowAnimationDuration(TransitionAnimation animation) override;
 
   public:
-    Dropdown(std::string title, std::vector<std::string> values, ValueSelectedEvent::Callback cb, int selected = 0, ValueSelectedEvent::Callback dismissCb = [](int){});
+    Dropdown(const std::string& title, std::vector<std::string> values, ValueSelectedEvent::Callback cb, int selected = 0, ValueSelectedEvent::Callback dismissCb = [](int){});
 
     void show(std::function<void(void)> cb, bool animate, float animationDuration) override;
     void hide(std::function<void(void)> cb, bool animated, float animationDuration) override;

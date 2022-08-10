@@ -654,6 +654,7 @@ void View::drawBackground(NVGcontext* vg, FrameContext* ctx, Style style)
             nvgBeginPath(vg);
             nvgRect(vg, x, y, width, height);
             nvgFill(vg);
+            break;
         }
         case ViewBackground::SHAPE_COLOR:
         {
@@ -666,13 +667,14 @@ void View::drawBackground(NVGcontext* vg, FrameContext* ctx, Style style)
                 nvgRect(vg, x, y, width, height);
 
             nvgFill(vg);
+            break;
         }
         case ViewBackground::NONE:
             break;
     }
 }
 
-ActionIdentifier View::registerAction(std::string hintText, enum ControllerButton button, ActionListener actionListener, bool hidden, bool allowRepeating, enum Sound sound)
+ActionIdentifier View::registerAction(const std::string& hintText, enum ControllerButton button, ActionListener actionListener, bool hidden, bool allowRepeating, enum Sound sound)
 {
     ActionIdentifier nextIdentifier = (this->actions.size() == 0) ? 1 : this->actions.back().identifier + 1;
 
@@ -698,7 +700,7 @@ void View::registerClickAction(ActionListener actionListener)
     this->registerAction("hints/ok"_i18n, BUTTON_A, actionListener, false, false, SOUND_CLICK);
 }
 
-void View::updateActionHint(enum ControllerButton button, std::string hintText)
+void View::updateActionHint(enum ControllerButton button, const std::string& hintText)
 {
     if (auto it = std::find(this->actions.begin(), this->actions.end(), button); it != this->actions.end())
         it->hintText = hintText;
@@ -1351,7 +1353,7 @@ void View::setCustomNavigationRoute(FocusDirection direction, View* target)
     this->customFocusByPtr[direction] = target;
 }
 
-void View::setCustomNavigationRoute(FocusDirection direction, std::string targetId)
+void View::setCustomNavigationRoute(FocusDirection direction, const std::string& targetId)
 {
     if (!this->focusable)
         fatal("Only focusable views can have a custom navigation route");
@@ -1385,10 +1387,7 @@ View::~View()
 
     // Parent userdata
     if (this->parentUserdata)
-    {
         free(this->parentUserdata);
-        this->parentUserdata = nullptr;
-    }
 
     // Focus sanity check
     if (Application::getCurrentFocus() == this)
@@ -1412,7 +1411,7 @@ View::~View()
         *deletionToken = true;
 }
 
-std::string View::getStringXMLAttributeValue(std::string value)
+std::string View::getStringXMLAttributeValue(const std::string& value)
 {
     if (startsWith(value, "@i18n/"))
     {
@@ -1423,7 +1422,7 @@ std::string View::getStringXMLAttributeValue(std::string value)
     return value;
 }
 
-std::string View::getFilePathXMLAttributeValue(std::string value)
+std::string View::getFilePathXMLAttributeValue(const std::string& value)
 {
     if (startsWith(value, "@res/"))
     {
@@ -1434,7 +1433,7 @@ std::string View::getFilePathXMLAttributeValue(std::string value)
     return value;
 }
 
-bool View::applyXMLAttribute(std::string name, std::string value)
+bool View::applyXMLAttribute(const std::string& name, const std::string& value)
 {
     // String -> string
     if (this->stringAttributes.count(name) > 0)
@@ -1670,17 +1669,17 @@ void View::applyXMLAttributes(tinyxml2::XMLElement* element)
     }
 }
 
-bool View::isXMLAttributeValid(std::string attributeName)
+bool View::isXMLAttributeValid(const std::string& attributeName)
 {
     return this->knownAttributes.count(attributeName) > 0;
 }
 
-View* View::createFromXMLResource(std::string name)
+View* View::createFromXMLResource(const std::string& name)
 {
     return View::createFromXMLFile(std::string(BRLS_RESOURCES) + "xml/" + name);
 }
 
-View* View::createFromXMLString(std::string xml)
+View* View::createFromXMLString(const std::string& xml)
 {
     tinyxml2::XMLDocument* document = new tinyxml2::XMLDocument();
     tinyxml2::XMLError error        = document->Parse(xml.c_str());
@@ -1698,7 +1697,7 @@ View* View::createFromXMLString(std::string xml)
     return view;
 }
 
-View* View::createFromXMLFile(std::string path)
+View* View::createFromXMLFile(const std::string& path)
 {
     tinyxml2::XMLDocument* document = new tinyxml2::XMLDocument();
     tinyxml2::XMLError error        = document->LoadFile(path.c_str());
@@ -2155,7 +2154,7 @@ Visibility View::getVisibility()
     return visibility;
 }
 
-void View::printXMLAttributeErrorMessage(tinyxml2::XMLElement* element, std::string name, std::string value)
+void View::printXMLAttributeErrorMessage(tinyxml2::XMLElement* element, const std::string& name, const std::string& value)
 {
     if (this->knownAttributes.find(name) != this->knownAttributes.end())
         fatal("Illegal value \"" + value + "\" for \"" + std::string(element->Name()) + "\" XML attribute \"" + name + "\"");
@@ -2163,43 +2162,43 @@ void View::printXMLAttributeErrorMessage(tinyxml2::XMLElement* element, std::str
         fatal("Unknown XML attribute \"" + name + "\" for tag \"" + std::string(element->Name()) + "\" (with value \"" + value + "\")");
 }
 
-void View::registerFloatXMLAttribute(std::string name, FloatAttributeHandler handler)
+void View::registerFloatXMLAttribute(const std::string& name, FloatAttributeHandler handler)
 {
     this->floatAttributes[name] = handler;
     this->knownAttributes.insert(name);
 }
 
-void View::registerPercentageXMLAttribute(std::string name, FloatAttributeHandler handler)
+void View::registerPercentageXMLAttribute(const std::string& name, FloatAttributeHandler handler)
 {
     this->percentageAttributes[name] = handler;
     this->knownAttributes.insert(name);
 }
 
-void View::registerAutoXMLAttribute(std::string name, AutoAttributeHandler handler)
+void View::registerAutoXMLAttribute(const std::string& name, AutoAttributeHandler handler)
 {
     this->autoAttributes[name] = handler;
     this->knownAttributes.insert(name);
 }
 
-void View::registerStringXMLAttribute(std::string name, StringAttributeHandler handler)
+void View::registerStringXMLAttribute(const std::string& name, StringAttributeHandler handler)
 {
     this->stringAttributes[name] = handler;
     this->knownAttributes.insert(name);
 }
 
-void View::registerColorXMLAttribute(std::string name, ColorAttributeHandler handler)
+void View::registerColorXMLAttribute(const std::string& name, ColorAttributeHandler handler)
 {
     this->colorAttributes[name] = handler;
     this->knownAttributes.insert(name);
 }
 
-void View::registerBoolXMLAttribute(std::string name, BoolAttributeHandler handler)
+void View::registerBoolXMLAttribute(const std::string& name, BoolAttributeHandler handler)
 {
     this->boolAttributes[name] = handler;
     this->knownAttributes.insert(name);
 }
 
-void View::registerFilePathXMLAttribute(std::string name, FilePathAttributeHandler handler)
+void View::registerFilePathXMLAttribute(const std::string& name, FilePathAttributeHandler handler)
 {
     this->filePathAttributes[name] = handler;
     this->knownAttributes.insert(name);
@@ -2210,7 +2209,7 @@ float ntz(float value)
     return std::isnan(value) ? 0.0f : value;
 }
 
-View* View::getView(std::string id)
+View* View::getView(const std::string& id)
 {
     if (id == this->id)
         return this;
@@ -2218,7 +2217,7 @@ View* View::getView(std::string id)
     return nullptr;
 }
 
-View* View::getNearestView(std::string id)
+View* View::getNearestView(const std::string& id)
 {
     // First try a children of ours
     View* child = this->getView(id);
@@ -2233,7 +2232,7 @@ View* View::getNearestView(std::string id)
     return nullptr;
 }
 
-void View::setId(std::string id)
+void View::setId(const std::string& id)
 {
     if (id == "")
         fatal("ID cannot be empty");

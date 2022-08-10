@@ -97,7 +97,7 @@ void loadTranslations()
 
 namespace internal
 {
-    std::string getRawStr(std::string stringName)
+    std::string getRawStr(const std::string& stringName)
     {
         nlohmann::json::json_pointer pointer;
 

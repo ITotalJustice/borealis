@@ -69,7 +69,7 @@ SwitchPlatform::SwitchPlatform()
     }
 }
 
-void SwitchPlatform::createWindow(std::string windowTitle, uint32_t windowWidth, uint32_t windowHeight)
+void SwitchPlatform::createWindow(const std::string& windowTitle, uint32_t windowWidth, uint32_t windowHeight)
 {
     this->videoContext = new SwitchVideoContext();
 }

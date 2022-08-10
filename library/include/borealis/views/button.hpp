@@ -164,9 +164,9 @@ class Button : public Box
     void setState(ButtonState state);
 
     /**
-     * Sets the text of the button. 
+     * Sets the text of the button.
      */
-    void setText(std::string text);
+    void setText(const std::string& text);
 
     /**
      * Sets the font sise of the button.

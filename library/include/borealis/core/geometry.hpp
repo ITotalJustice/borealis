@@ -42,7 +42,7 @@ struct Point
     void operator+=(const Point& a);
     void operator-=(const Point& a);
 
-    Point lerp(const Point& other, const float& percent) const;
+    Point lerp(const Point& end, const float& percent) const;
 };
 
 // A structure that contains width and height values.
@@ -103,10 +103,10 @@ struct Rect
     bool operator==(const Rect& other) const;
 
     // Returns true if point is inside this Rect.
-    bool pointInside(Point point);
+    bool pointInside(Point point) const;
 
     // Returns string with description of current Rect.
-    std::string describe();
+    std::string describe() const;
 
     // Returns true if two rects have shared area.
     bool collideWith(const Rect& other) const;

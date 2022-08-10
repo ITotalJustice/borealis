@@ -34,7 +34,7 @@ BooleanCell::BooleanCell()
     });
 }
 
-void BooleanCell::init(std::string title, bool isOn, std::function<void(bool)> callback)
+void BooleanCell::init(const std::string& title, bool isOn, std::function<void(bool)> callback)
 {
     this->title->setText(title);
     setOn(isOn, false);

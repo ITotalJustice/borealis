@@ -78,7 +78,7 @@ class Activity
      * Returns the view with the corresponding id, or nullptr
      * if it hasn't been found in the activity.
      */
-    View* getView(std::string id);
+    View* getView(const std::string& id);
 
     /**
      * Resizes the activity to fit the window. Called when the activity
@@ -131,7 +131,7 @@ class Activity
      * Returns the identifier for the action, so it can be unregistered later on. Returns ACTION_NONE if the
      * action was not registered.
      */
-    ActionIdentifier registerAction(std::string hintText, enum ControllerButton button, ActionListener actionListener, bool hidden = false, bool allowRepeating = false, enum Sound sound = SOUND_NONE);
+    ActionIdentifier registerAction(const std::string& hintText, enum ControllerButton button, ActionListener actionListener, bool hidden = false, bool allowRepeating = false, enum Sound sound = SOUND_NONE);
 
     /**
      * Unregisters an action with the given identifier on the content view.

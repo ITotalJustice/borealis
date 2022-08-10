@@ -128,7 +128,7 @@ AppletFrame::AppletFrame(View* contentView)
     setContentView(contentView);
 }
 
-void AppletFrame::setIcon(std::string path)
+void AppletFrame::setIcon(const std::string& path)
 {
     if (path.empty())
     {
@@ -151,7 +151,7 @@ void AppletFrame::setFooterVisibility(Visibility visibility)
     footer->setVisibility(visibility);
 }
 
-void AppletFrame::setTitle(std::string title)
+void AppletFrame::setTitle(const std::string& title)
 {
     this->title->setText(title);
 }

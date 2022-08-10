@@ -245,7 +245,7 @@ void Image::invalidateImageBounds()
     this->paint    = nvgImagePattern(vg, 0, 0, this->imageWidth, this->imageHeight, 0, this->texture, 1.0f);
 }
 
-void Image::setImageFromRes(std::string name)
+void Image::setImageFromRes(const std::string& name)
 {
     this->setImageFromFile(std::string(BRLS_RESOURCES) + name);
 }
@@ -263,7 +263,7 @@ int Image::getImageFlags()
     return 0;
 }
 
-void Image::setImageFromFile(std::string path)
+void Image::setImageFromFile(const std::string& path)
 {
     NVGcontext* vg = Application::getNVGContext();
 

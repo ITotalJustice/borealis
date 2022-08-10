@@ -46,10 +46,10 @@ static void glfwWindowFramebufferSizeCallback(GLFWwindow* window, int width, int
     Application::onWindowResized(width, height);
 }
 
-GLFWVideoContext::GLFWVideoContext(std::string windowTitle, uint32_t windowWidth, uint32_t windowHeight)
+GLFWVideoContext::GLFWVideoContext(const std::string& windowTitle, uint32_t windowWidth, uint32_t windowHeight)
 {
     // Create window
-#if defined(__APPLE__) || defined(_WIN32) 
+#if defined(__APPLE__) || defined(_WIN32)
     // Explicitly ask for a 3.2 context on OS X
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);

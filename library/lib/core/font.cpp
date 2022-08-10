@@ -25,7 +25,7 @@
 namespace brls
 {
 
-bool FontLoader::loadFontFromFile(std::string fontName, std::string filePath)
+bool FontLoader::loadFontFromFile(const std::string& fontName, const std::string& filePath)
 {
     if (access(filePath.c_str(), F_OK) != -1)
     {

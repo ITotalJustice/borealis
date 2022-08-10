@@ -40,8 +40,8 @@ int DataSource::numberOfRows(brls::RecyclerFrame* recycler, int section)
 {
     return pokemons.size();
 }
-    
-std::string DataSource::titleForHeader(brls::RecyclerFrame* recycler, int section) 
+
+std::string DataSource::titleForHeader(brls::RecyclerFrame* recycler, int section)
 {
     if (section == 0)
         return "";
@@ -68,7 +68,7 @@ RecyclingListTab::RecyclingListTab()
 {
     // Inflate the tab from the XML file
     this->inflateFromXMLRes("xml/tabs/recycling_list.xml");
-    
+
     pokemons.clear();
     pokemons.push_back(Pokemon("001", "Bulbasaur"));
     pokemons.push_back(Pokemon("004", "Charmander"));

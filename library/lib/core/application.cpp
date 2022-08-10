@@ -92,7 +92,7 @@ bool Application::init()
     return true;
 }
 
-void Application::createWindow(std::string windowTitle)
+void Application::createWindow(const std::string& windowTitle)
 {
     if (!Application::inited)
     {
@@ -200,7 +200,7 @@ bool Application::mainLoop()
     }
 
     std::vector<TouchState> touchState;
-    for (int i = 0; i < rawTouch.size(); i++)
+    for (size_t i = 0; i < rawTouch.size(); i++)
     {
         auto old = std::find_if(std::begin(currentTouchState), std::end(currentTouchState), [rawTouch, i](TouchState touch) {
             return touch.fingerId == rawTouch[i].fingerId;
@@ -218,7 +218,7 @@ bool Application::mainLoop()
         }
     }
 
-    for (int i = 0; i < currentTouchState.size(); i++)
+    for (size_t i = 0; i < currentTouchState.size(); i++)
     {
         if (currentTouchState[i].phase == TouchPhase::NONE)
             continue;
@@ -233,7 +233,7 @@ bool Application::mainLoop()
         }
     }
 
-    for (int i = 0; i < touchState.size(); i++)
+    for (size_t i = 0; i < touchState.size(); i++)
     {
         if (touchState[i].phase == TouchPhase::NONE)
         {
@@ -673,7 +673,7 @@ void Application::setGlobalFPSToggle(bool enabled)
     }
 }
 
-void Application::notify(std::string text)
+void Application::notify(const std::string& text)
 {
     // To be implemented
 }
@@ -826,7 +826,7 @@ void Application::pushActivity(Activity* activity, TransitionAnimation animation
 
     activity->resizeToFitWindow();
 
-    activity->hide([] {}, false, NULL);
+    activity->hide([] {}, false, 0);
     if (!fadeOut)
         activity->show([] { Application::unblockInputs(); }, true, activity->getShowAnimationDuration(animation));
 
@@ -885,7 +885,7 @@ void Application::tryDeinitFirstResponder(View* view)
         return;
 
     // Interrupt current gestures if presented
-    for (int i = 0; i < currentTouchState.size(); i++)
+    for (size_t i = 0; i < currentTouchState.size(); i++)
     {
         if (currentTouchState[i].view == view)
         {
@@ -901,7 +901,7 @@ void Application::tryDeinitFirstResponder(View* view)
     }
 }
 
-bool Application::loadFontFromFile(std::string fontName, std::string filePath)
+bool Application::loadFontFromFile(const std::string& fontName, const std::string& filePath)
 {
     int handle = nvgCreateFont(Application::getNVGContext(), fontName.c_str(), filePath.c_str());
 
@@ -915,7 +915,7 @@ bool Application::loadFontFromFile(std::string fontName, std::string filePath)
     return true;
 }
 
-bool Application::loadFontFromMemory(std::string fontName, void* address, size_t size, bool freeData)
+bool Application::loadFontFromMemory(const std::string& fontName, void* address, size_t size, bool freeData)
 {
     int handle = nvgCreateFontMem(Application::getNVGContext(), fontName.c_str(), (unsigned char*)address, size, freeData);
 
@@ -929,7 +929,7 @@ bool Application::loadFontFromMemory(std::string fontName, void* address, size_t
     return true;
 }
 
-void Application::crash(std::string text)
+void Application::crash(const std::string& text)
 {
     // To be implemented
 }
@@ -969,7 +969,7 @@ NVGcontext* Application::getNVGContext()
     return Application::platform->getVideoContext()->getNVGContext();
 }
 
-void Application::setCommonFooter(std::string footer)
+void Application::setCommonFooter(const std::string& footer)
 {
     Application::commonFooter = footer;
 }
@@ -1027,7 +1027,7 @@ VoidEvent* Application::getRunLoopEvent()
     return &Application::runLoopEvent;
 }
 
-int Application::getFont(std::string fontName)
+int Application::getFont(const std::string& fontName)
 {
     if (Application::fontStash.count(fontName) == 0)
         return FONT_INVALID;
@@ -1035,12 +1035,12 @@ int Application::getFont(std::string fontName)
     return Application::fontStash[fontName];
 }
 
-bool Application::XMLViewsRegisterContains(std::string name)
+bool Application::XMLViewsRegisterContains(const std::string& name)
 {
     return Application::xmlViewsRegister.count(name) > 0;
 }
 
-XMLViewCreator Application::getXMLViewCreator(std::string name)
+XMLViewCreator Application::getXMLViewCreator(const std::string& name)
 {
     return Application::xmlViewsRegister[name];
 }
@@ -1080,7 +1080,7 @@ void Application::registerBuiltInXMLViews()
     Application::registerXMLView("brls:Wireless", WirelessWidget::create);
 }
 
-void Application::registerXMLView(std::string name, XMLViewCreator creator)
+void Application::registerXMLView(const std::string& name, XMLViewCreator creator)
 {
     Application::xmlViewsRegister[name] = creator;
 }

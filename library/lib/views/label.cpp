@@ -294,7 +294,7 @@ void Label::setTextColor(NVGcolor color)
     this->textColor = color;
 }
 
-void Label::setText(std::string text)
+void Label::setText(const std::string& text)
 {
     this->truncatedText = text;
     this->fullText      = text;

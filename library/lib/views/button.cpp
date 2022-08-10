@@ -174,7 +174,7 @@ void Button::setTextColor(NVGcolor color)
     applyStyle();
 }
 
-void Button::setText(std::string text)
+void Button::setText(const std::string& text)
 {
     this->label->setText(text);
 }

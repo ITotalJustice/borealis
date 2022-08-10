@@ -42,10 +42,12 @@ void Activity::setContentView(View* view)
     }
 
     this->contentView = view;
-    this->contentView->setParentActivity(this);
-    // willAppear is only called when the activity is pushed onto the stack
-
-    this->resizeToFitWindow();
+    if (this->contentView)
+    {
+        this->contentView->setParentActivity(this);
+        // willAppear is only called when the activity is pushed onto the stack
+        this->resizeToFitWindow();
+    }
 }
 
 void Activity::resizeToFitWindow()
@@ -63,6 +65,9 @@ View* Activity::createContentView()
 
 float Activity::getShowAnimationDuration(TransitionAnimation animation)
 {
+    if (!contentView)
+        return 0;
+
     return contentView->getShowAnimationDuration(animation);
 }
 
@@ -117,7 +122,7 @@ bool Activity::isHidden()
     return this->contentView->isHidden();
 }
 
-ActionIdentifier Activity::registerAction(std::string hintText, enum ControllerButton button, ActionListener actionListener, bool hidden, bool allowRepeating, enum Sound sound)
+ActionIdentifier Activity::registerAction(const std::string& hintText, enum ControllerButton button, ActionListener actionListener, bool hidden, bool allowRepeating, enum Sound sound)
 {
     if (this->contentView)
         return this->contentView->registerAction(hintText, button, actionListener, hidden, allowRepeating, sound);
@@ -158,7 +163,7 @@ View* Activity::getContentView()
     return this->contentView;
 }
 
-View* Activity::getView(std::string id)
+View* Activity::getView(const std::string& id)
 {
     if (!this->contentView)
         return nullptr;

@@ -21,7 +21,8 @@
             "binaryDir": "${sourceDir}/build/${presetName}",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
-                "DEMO": true
+                "DEMO": true,
+                "SANITISE": true
             }
         },
         {
@@ -41,7 +42,8 @@
             "toolchainFile": "$env{VCPKG_INSTALLATION_ROOT}/scripts/buildsystems/vcpkg.cmake",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
-                "DEMO": true
+                "DEMO": true,
+                "SANITISE": true
             }
         },
         {

@@ -69,12 +69,12 @@ Header::Header()
     });
 }
 
-void Header::setTitle(std::string title)
+void Header::setTitle(const std::string& title)
 {
     this->title->setText(title);
 }
 
-void Header::setSubtitle(std::string subtitle)
+void Header::setSubtitle(const std::string& subtitle)
 {
     this->subtitle->setVisibility(Visibility::VISIBLE);
     this->subtitle->setText(subtitle);

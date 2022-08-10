@@ -31,7 +31,7 @@ class GLFWPlatform : public Platform
     ~GLFWPlatform();
 
     std::string getName() override;
-    void createWindow(std::string windowTitle, uint32_t windowWidth, uint32_t windowHeight) override;
+    void createWindow(const std::string& windowTitle, uint32_t windowWidth, uint32_t windowHeight) override;
 
     bool mainLoopIteration() override;
     ThemeVariant getThemeVariant() override;
