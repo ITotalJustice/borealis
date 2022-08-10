@@ -155,8 +155,10 @@ if (NINTENDO_SWITCH)
     )
 else()
     find_package(glfw3 CONFIG REQUIRED)
+    find_package(glm CONFIG REQUIRED)
 
     target_link_libraries(borealis PRIVATE glfw)
+    target_link_libraries(borealis PRIVATE glm::glm)
 
     target_sources(borealis PRIVATE
         lib/platforms/glfw/glfw_platform.cpp

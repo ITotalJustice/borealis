@@ -5,6 +5,7 @@
     "description": "Hardware accelerated, Nintendo Switch inspired UI library for PC and Nintendo Switch",
     "license": "Apache-2.0",
     "dependencies": [
-      "glfw3"
+      "glfw3",
+      "glm"
     ]
   }
