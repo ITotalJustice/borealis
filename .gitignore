@@ -1,4 +1,4 @@
-.*/
+# .*/
 build/
 build.nx/
 *~
@@ -10,3 +10,4 @@ build.nx/
 builddir
 *.dksh
 .DS_Store
+.cache/
