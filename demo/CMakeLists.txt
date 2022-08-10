@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20.0)
 
-add_executable(borealise_demo
+add_executable(borealis_demo
     main.cpp
     main_activity.cpp
     captioned_image.cpp
@@ -10,20 +10,26 @@ add_executable(borealise_demo
     settings_tab.cpp
 )
 
-target_link_libraries(borealise_demo PRIVATE borealis)
+target_link_libraries(borealis_demo PRIVATE borealis)
 
-dkp_add_asset_target(main_romfs ${CMAKE_SOURCE_DIR}/resources)
+# only copy needed files as to not bloat romfs
+file(COPY ${CMAKE_SOURCE_DIR}/resources/i18n/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/romfs/i18n/)
+file(COPY ${CMAKE_SOURCE_DIR}/resources/img/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/romfs/img/)
+file(COPY ${CMAKE_SOURCE_DIR}/resources/material/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/romfs/material/)
+file(COPY ${CMAKE_SOURCE_DIR}/resources/xml/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/romfs/xml/)
 
-nx_generate_nacp(borealise_demo.nacp
-    NAME "borealise_demo"
+dkp_add_asset_target(romfs ${CMAKE_CURRENT_BINARY_DIR}/romfs)
+
+nx_generate_nacp(borealis_demo.nacp
+    NAME "borealis demo"
     AUTHOR natinusala
     VERSION 1.0
 )
 
-nx_create_nro(borealise_demo
+nx_create_nro(borealis_demo
     ICON ${CMAKE_SOURCE_DIR}/resources/img/demo_icon.jpg
-    NACP borealise_demo.nacp
-    ROMFS main_romfs
+    NACP borealis_demo.nacp
+    ROMFS romfs
 )
 
 set(SHADER_FOLDER ${CMAKE_SOURCE_DIR}/library/lib/extern/nanovg-deko3d/shaders/)
@@ -43,7 +49,7 @@ nx_add_shader_program(fill_vsh
     vert
 )
 
-dkp_install_assets(main_romfs
+dkp_install_assets(romfs
     DESTINATION shaders
     TARGETS
         fill_fsh
