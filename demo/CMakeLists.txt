@@ -10,6 +10,7 @@ add_executable(borealis_demo
     settings_tab.cpp
 )
 
+set_target_properties(borealis_demo PROPERTIES CXX_STANDARD 17)
 target_link_libraries(borealis_demo PRIVATE borealis)
 
 if (NINTENDO_SWITCH)

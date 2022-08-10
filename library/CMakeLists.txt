@@ -73,6 +73,8 @@ add_library(borealis
     lib/extern/yoga/src/yoga/Yoga.cpp
 )
 
+set_target_properties(borealis PROPERTIES CXX_STANDARD 17)
+
 target_include_directories(borealis
     PUBLIC
         "include"
