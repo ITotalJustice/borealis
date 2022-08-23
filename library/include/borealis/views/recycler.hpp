@@ -186,8 +186,9 @@ class RecyclerFrame : public ScrollingFrame
 
     /*
      * Set an object that acts as the data source of the recycler frame.
+     * deleteMe: set to true if source should be deleted in destructor.
      */
-    void setDataSource(RecyclerDataSource* source);
+    void setDataSource(RecyclerDataSource* source, bool deleteMe);
 
     /*
      * Get an object that acts as the data source of the recycler frame.
@@ -234,6 +235,7 @@ class RecyclerFrame : public ScrollingFrame
 
   private:
     RecyclerDataSource* dataSource = nullptr;
+    bool deleteDataSource = false;
     bool layouted                  = false;
 
     uint32_t visibleMin, visibleMax;

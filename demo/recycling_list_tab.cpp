@@ -83,7 +83,7 @@ RecyclingListTab::RecyclingListTab()
     recycler->estimatedRowHeight = 70;
     recycler->registerCell("Header", []() { return RecyclerHeader::create(); });
     recycler->registerCell("Cell", []() { return RecyclerCell::create(); });
-    recycler->setDataSource(new DataSource());
+    recycler->setDataSource(new DataSource(), true);
 }
 
 brls::View* RecyclingListTab::create()

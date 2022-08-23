@@ -205,8 +205,7 @@ RecyclerFrame::RecyclerFrame()
 
 RecyclerFrame::~RecyclerFrame()
 {
-    // why was this commented out?????????
-    if (this->dataSource)
+    if (this->dataSource && this->deleteDataSource)
         delete dataSource;
 
     for (auto it : queueMap)
@@ -217,9 +216,9 @@ RecyclerFrame::~RecyclerFrame()
     }
 }
 
-void RecyclerFrame::setDataSource(RecyclerDataSource* source)
+void RecyclerFrame::setDataSource(RecyclerDataSource* source, bool deleteMe)
 {
-    if (this->dataSource)
+    if (this->dataSource && this->deleteDataSource)
         delete this->dataSource;
 
     this->dataSource = source;

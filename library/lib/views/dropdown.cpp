@@ -118,7 +118,7 @@ Dropdown::Dropdown(const std::string& title, std::vector<std::string> values, Va
         return cell;
     });
     recycler->setDefaultCellFocus(IndexPath(0, selected));
-    recycler->setDataSource(this);
+    recycler->setDataSource(this, false);
 
     Style style = Application::getStyle();
 
